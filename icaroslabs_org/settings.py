@@ -148,7 +148,8 @@ INSTALLED_APPS = (
     'djangocms_snippet',
     'djangocms_googlemap',
     'djangocms_video',
-    'icaroslabs_org'
+    'icaroslabs_org',
+    'aldryn_bootstrap3',
 )
 
 LANGUAGES = (
@@ -198,7 +199,7 @@ DATABASES = {
 }
 
 MIGRATION_MODULES = {
-    
+
 }
 
 THUMBNAIL_PROCESSORS = (
@@ -207,3 +208,16 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
 )
+
+ALDRYN_BOOTSTRAP3_CAROUSEL_STYLES = [
+    # ('feature', gettext('Featured Version')),
+]
+
+ALDRYN_BOOTSTRAP3_ICONSETS = [
+    ('glyphicons', 'glyphicons', 'Glyphicons'),
+    ('fontawesome', 'fa', 'Font Awesome'),
+    # custom iconsets have to be JSON
+    ('{"iconClass": "icon", "iconClassFix": "icon-", "icons": [...]}', 'icon', 'Custom Font Icons'),
+    ('{"svg": true, "spritePath": "sprites/icons.svg", "iconClass": "icon", "iconClassFix": "icon-", "icons": [...]}', 'icon', 'Custom SVG Icons'),
+]
+
