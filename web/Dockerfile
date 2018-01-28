@@ -1,20 +1,18 @@
 FROM alpine
 
-# Initialize
 RUN mkdir -p /data/web
 WORKDIR /data/web
 COPY requirements.txt /data/web/
 
-#TODO: Consolidatee dependencies
-# Setup
+#TODO: Consolidate dependencies
 RUN apk update
 RUN apk upgrade
-RUN apk add --update python3 python3-dev postgresql-client postgresql-dev build-base gettext
-RUN pip3 install --upgrade pip
-RUN pip3 install -r requirements.txt
+RUN apk add --update build-base gcc gettext libxslt-dev libxml2-dev libffi-dev
+RUN apk add --update py-pip python python-dev 
+RUN apk add --update postgresql-client postgresql-dev 
+RUN apk add --update jpeg-dev zlib-dev 
+RUN pip install -r requirements.txt
 
-# Clean
-RUN apk del -r python3-dev postgresql
+RUN apk del -r gcc python-dev postgresql
 
-# Prepare
 COPY . /data/web/
