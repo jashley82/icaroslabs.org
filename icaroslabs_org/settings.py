@@ -75,6 +75,13 @@ STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'icaroslabs_org', 'static'),
 )
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'aldryn_boilerplates.staticfile_finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
 SITE_ID = 1
 
 
@@ -94,12 +101,14 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'sekizai.context_processors.sekizai',
                 'django.template.context_processors.static',
-                'cms.context_processors.cms_settings'
+                'cms.context_processors.cms_settings',
+                'aldryn_boilerplates.context_processors.boilerplate',
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
                 'django.template.loaders.app_directories.Loader',
-                'django.template.loaders.eggs.Loader'
+                'django.template.loaders.eggs.Loader',
+                'aldryn_boilerplates.template_loaders.AppDirectoriesLoader',
             ],
         },
     },
@@ -152,6 +161,7 @@ INSTALLED_APPS = (
     'icaroslabs_org',
 
     'aldryn_bootstrap3',
+    'aldryn_boilerplates',
     'aldryn_apphooks_config',
     'aldryn_categories',
     'aldryn_common',
