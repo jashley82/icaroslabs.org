@@ -1,0 +1,1 @@
+@daily /usr/bin/certbot-auto renew --quiet && systemctl reload nginx

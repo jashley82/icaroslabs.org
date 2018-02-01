@@ -1,20 +1,6 @@
 server {
-    listen 80;
-
-    server_name www.icaroslabs.com icaroslabs.com;
-    return 301 https://icaroslabs.com$request_uri;
-}
-
-server {
-    listen 443 ssl http2;
-
-    server_name www.icaroslabs.com;
-    return 301 $scheme://domain.com$request_uri;
-}
-
-server {
-    listen 443 ssl http2 default_server;
-    listen [::]:443 ssl http2 default_server;
+    listen 80 default_server;
+    listen [::]:80 default_server;
 
     server_name icaroslabs.org;
     charset utf-8;
