@@ -20,6 +20,7 @@ nginx:
   - web
   links:
   - web:web
+  command: /usr/bin/certbot-auto --authenticator standalone --certonly
 
 postgres:
   restart: always
