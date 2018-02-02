@@ -20,7 +20,8 @@ nginx:
   - web
   links:
   - web:web
-  command: /usr/bin/certbot-auto --authenticator standalone --certonly
+  volumes:
+  - /etc/letsencrypt/live/icaroslabs.org
 
 postgres:
   restart: always
