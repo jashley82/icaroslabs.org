@@ -1,1 +1,3 @@
-@daily /usr/bin/certbot-auto renew --quiet && systemctl reload nginx
+@daily cd /home/josh/production/icaroslabs_org &&\
+    docker-compose exec nginx /usr/bin/certbot-auto renew --quiet &&\
+    docker-compose restart nginx
