@@ -20,8 +20,6 @@ nginx:
   - web
   links:
   - web:web
-  volumes:
-  - /etc/letsencrypt/live/icaroslabs.org:/etc/letsencrypt/live/icaroslabs.org
 
 postgres:
   restart: always
