@@ -18,8 +18,8 @@ nginx:
   - "80:80"
   - "443:443"
   volumes:
-  - certs:/etc/letsencrypt
-  - certs-data:/data/letsencrypt
+  - /etc/letsencrypt:/etc/letsencrypt
+  - /data/letsencrypt:/data/letsencrypt
   volumes_from:
   - web
   links:
