@@ -50,3 +50,18 @@ data:
   volumes:
   - /var/lib/postgresql
   command: "true"
+version: '2'
+
+bind:
+  restart: always
+  image: sameersbn/bind:latest
+  args:
+  - publish=10.8.0.1:10000:10000
+  env_file:
+  - env
+  ports:
+  - "53:53/udp"
+  - "53:53/tcp"
+  - "10000:10000/tcp"
+  volumes:
+  - /srv/docker/bind:/data
