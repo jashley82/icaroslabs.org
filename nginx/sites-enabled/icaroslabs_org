@@ -1,8 +1,13 @@
 server {
+    server_name                 www.icaroslabs.org;
+    return                      301 https://icaroslabs.org$request_uri;
+}
+
+server {
     listen                      80;
     listen                      [::]:80;
     server_name                 icaroslabs.org;
-
+    return                      301 https://icaroslabs.org$request_uri;
 }
 
 server {
