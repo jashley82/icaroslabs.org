@@ -1,52 +1,65 @@
-web:
-  restart: always
-  build: ./web/
-  expose:
-  - "8000"
-  links:
-  - postgres:postgres
-  - redis:redis
-  env_file: env
-  volumes:
-  - ./web:/data/web
-  command: /usr/bin/gunicorn icaroslabs_org.wsgi:application -w 2 -b :8000
+version: '2'
 
-nginx:
-  restart: always
-  build: ./nginx/
-  ports:
-  - "80:80"
-  - "443:443"
-  volumes:
-  - /etc/letsencrypt:/etc/letsencrypt
-  - /data/letsencrypt:/data/letsencrypt
-  volumes_from:
-  - web
-  links:
-  - web:web
+services:
+  bind:
+    restart: always
+    image: sameersbn/bind:9.9.5-20161106
+    ports:
+    - "53:53/udp"
+    - "53:53/tcp"
+    - "10000:10000/tcp"
+    volumes:
+    - /srv/docker/bind:/data
 
-postgres:
-  restart: always
-  image: postgres:latest
-  volumes_from:
-  - data
-  volumes:
-  - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-  - ./backups/postgresql:/backup
-  env_file:
-  - env
-  expose:
-  - "5432"
-
-redis:
-  restart: always
-  image: redis:latest
-  expose:
-  - "6379"
-
-data:
-  restart: always
-  image: alpine
-  volumes:
-  - /var/lib/postgresql
-  command: "true"
+  web:
+    restart: always
+    build: ./web/
+    expose:
+    - "8000"
+    links:
+    - postgres:postgres
+    - redis:redis
+    env_file: env
+    volumes:
+    - ./web:/data/web
+    command: /usr/bin/gunicorn icaroslabs_org.wsgi:application -w 2 -b :8000
+  
+  nginx:
+    restart: always
+    build: ./nginx/
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+    - /etc/letsencrypt:/etc/letsencrypt
+    - /data/letsencrypt:/data/letsencrypt
+    volumes_from:
+    - web
+    links:
+    - web:web
+  
+  postgres:
+    restart: always
+    image: postgres:latest
+    volumes_from:
+    - data
+    volumes:
+    - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    - ./backups/postgresql:/backup
+    env_file:
+    - env
+    expose:
+    - "5432"
+  
+  redis:
+    restart: always
+    image: redis:latest
+    expose:
+    - "6379"
+  
+  data:
+    restart: always
+    image: alpine
+    volumes:
+    - /var/lib/postgresql
+    command: "true"
