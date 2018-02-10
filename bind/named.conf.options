@@ -1,6 +1,6 @@
 acl goodclients {
         68.224.246.114;
-        10.8.0.0/16
+        10.8.0.0/24;
         localhost;
         localnets;
 };
