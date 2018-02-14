@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Run this setup initial letsencrypt certificate
+
 docker run -it --rm \
     -v certs:/etc/letsencrypt \
     -v certs-data:/data/letsencrypt \
