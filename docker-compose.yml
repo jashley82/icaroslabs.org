@@ -4,9 +4,9 @@ services:
   bind:
     image: 'pstauffer/bind:stable'
     ports:
-      - 53:53/udp
+      - 10.8.0.1:53:53/udp
     volumes:
-      - ./bind/bindconfig:/etc/bind
+      - ./bind/config:/etc/bind
       - /var/log/named:/var/log/named
     restart: always
 
