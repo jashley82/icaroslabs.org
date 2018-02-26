@@ -1,15 +1,6 @@
 version: '2'
 
 services:
-  bind:
-    image: 'pstauffer/bind:stable'
-    ports:
-      - 10.8.0.1:53:53/udp
-    volumes:
-      - ./bind/config:/etc/bind
-      - /var/log/named:/var/log/named
-    restart: always
-
   web:
     restart: always
     build: ./web/
