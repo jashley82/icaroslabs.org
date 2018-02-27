@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'fe2d!*=yethkug0-sbl=k6dh$_7qyk6j41^$uf705cy(!%@7x3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [u'localhost', u'icaroslabs.org', ]
 
