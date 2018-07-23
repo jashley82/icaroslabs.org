@@ -12,7 +12,7 @@ services:
     env_file: env
     volumes:
     - ./web:/data/web
-    command: /usr/bin/gunicorn icaroslabs_org.wsgi:application -w 2 -b :8000
+    command: gunicorn icaroslabs_org.wsgi:application -w 2 -b :8000
   
   nginx:
     restart: always
